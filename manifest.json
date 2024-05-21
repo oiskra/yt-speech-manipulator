@@ -4,7 +4,23 @@
   "description": "Application to manipulate youtube videos using speech recognition",
   "version": "0.1",
   "options_page": "options/options.html",
+  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage"    
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/watch*"],
+      "js": ["content-script.js"]
+    }
+  ],
   "action": {
-    "default_popup": "./popup/index.html"
+    "default_popup": "popup/index.html"
   }
+
 }

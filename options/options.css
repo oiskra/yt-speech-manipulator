@@ -1,0 +1,44 @@
+body {
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e1e1e1;
+    background-color: #252525;
+}
+
+.command-options-group {
+    margin-left: 20px;
+}
+
+.command-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.command-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.command-input input {
+    max-width: 200px;
+    background-color: inherit;
+    border: solid 2px #e1e1e1;
+    border-radius: .8em;
+    padding: .5em;
+    margin: .3em;
+    color: #e1e1e1;
+}
+
+.command-input input:disabled {
+    border-color: grey;
+    color: grey;
+}
+
+.command-input label{
+    font-size: .8em;
+    margin-left: .8em;
+}
+
+
+

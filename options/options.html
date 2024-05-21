@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="options.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Options Page</h1>
+    <div class="wrapper">
+        <h1>Options Page</h1>
+        <section>
+            <div class="command-options-group">
+                
+                <h2>Commands options</h2>
+                <p>Set commands that you want to be recognized by the extension.</p>
+                
+                <div class="command-info">
+                    <div class="command-input">
+                        <label for="">Play/pause</label>
+                        <input type="text" value="play" disabled>
+                    </div>
+                    <p class="command-description">Toggles between playing and pausing the video.</p>
+                </div>
+                <div class="command-info">
+                    <div class="command-input">
+                        <label for="">Jump</label>
+                        <input type="text" >
+                    </div>
+                </div>
+                <div class="command-info">
+                    <div class="command-input">
+                        <label for="">Back</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="command-info">
+                    <div class="command-input">
+                        <label for="">Skip Ad</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="command-info">
+                    <div class="command-input">
+                        <label for="">Fullscreen</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="command-info">
+                    <div class="command-input">
+                        <label for="">Mute/unmute</label>
+                        <input type="text">
+                    </div>
+                </div>
+            
+            </div>
+        </section>
+    </div>
+    <script src="options.js"></script>
 </body>
 </html>

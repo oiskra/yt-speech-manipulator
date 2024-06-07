@@ -1,0 +1,1 @@
+export const IS_RECOGNITION_ON = 'yvc_ext_isRecOn';

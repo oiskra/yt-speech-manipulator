@@ -1,30 +1,46 @@
-const initialize = () => {
-    const SpeechRecognition = window.webkitSpeechRecognition;
-    const SpeechGrammarList = window.webkitSpeechGrammarList;
-    
-    const grammar =
-        "#JSGF V1.0; grammar commands; public <command> = play | pause | fullscreen";
-    const recognition = new SpeechRecognition();
-    const speechRecognitionList = new SpeechGrammarList();
-    speechRecognitionList.addFromString(grammar, 1);
-    recognition.grammars = speechRecognitionList;
-    recognition.lang = "en-US";
+const muteBtn = document.querySelector('.ytp-mute-button');
+const fullscreenBtn = document.querySelector('.ytp-fullscreen-button');
+const skipAdBtn = document.querySelector('.ytp-skip-ad-button');
+const video = document.querySelector('.video-stream');
 
-    return recognition;
-}
-
-const RECOGNITION = initialize();
-RECOGNITION.start();
+const SpeechRecognition = window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.lang = "en-US";
 
 const handleVoiceCommand = (e) => {
-    const res = e.results[0][0].transcript;
-    console.log(res);
+    const result = e.results[0][0].transcript;   
+    console.log(result);
 }
 
-RECOGNITION.onstart = () => console.log('Recognition started.');
-RECOGNITION.onend = () => !RECOGNITION.manualStop && setTimeout(() => RECOGNITION.start(), 100);
+const startRecognition = () => {
+    recognition.addEventListener('end', restartRecognition);
+    recognition.start();
+}
 
-RECOGNITION.onresult = handleVoiceCommand;
+const endRecognition = () => {
+    recognition.removeEventListener('end', restartRecognition);
+    recognition.stop();
+}
+
+const restartRecognition = () => !recognition.manualStop && setTimeout(() => recognition.start(), 100);
+
+chrome.storage.sync.get(['yvc_ext_isRecOn'])
+.then((v) => {v['yvc_ext_isRecOn'] && startRecognition()})
+.then(() => {
+    chrome.storage.onChanged.addListener((changes) => {
+        const changedStorageValue = changes['yvc_ext_isRecOn'].newValue;
+    
+        if(changedStorageValue) { startRecognition(); }
+        else { endRecognition(); }  
+    })    
+})
+
+recognition.addEventListener('start', () => console.log('started...'));
+recognition.addEventListener('result', handleVoiceCommand);
+
+
+
+
 
 
 

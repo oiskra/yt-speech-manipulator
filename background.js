@@ -5,12 +5,6 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
             target: { tabId },
             files: ['content-script.js']
         }).then(() => console.log('script injected'));
-
-        chrome.offscreen.createDocument({
-            url: 'offscreen/offscreen.html',
-            reasons: ['USER_MEDIA'],
-            justification: 'reason for needing the document',
-        });
     }
 })
 
